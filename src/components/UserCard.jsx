@@ -1,5 +1,5 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from './ui/card'
-import DeleteUser from './deleteUser'
+import DeleteUser from './DeleteUser'
 import UpdateUser from './UpdateUser'
 
 function UserCard({userData}) {
