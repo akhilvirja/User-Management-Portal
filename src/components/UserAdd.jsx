@@ -1,8 +1,7 @@
-
 import { useDispatch } from 'react-redux'
 import { userSchema } from "../Schema"
 import { Button } from "./ui/button"
-import { Card, CardAction, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card"
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "./ui/card"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
 import { useFormik } from "formik"

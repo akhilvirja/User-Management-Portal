@@ -2,7 +2,7 @@ import { eventSchema } from '@/Schema'
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import { useFormik } from 'formik'
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 
 
 function EventForm() {

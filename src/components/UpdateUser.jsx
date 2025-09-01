@@ -1,12 +1,10 @@
-import React from 'react'
 import { AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogTitle, AlertDialogTrigger,AlertDialog, AlertDialogFooter, AlertDialogHeader } from "./ui/alert-dialog"
 import { Input } from "./ui/input"
 import { Label } from "./ui/label"
-import { Button } from "./ui/button"
 import { useDispatch } from 'react-redux'
 import { updateUser } from '@/features/users/userSlice'
 import { useFormik } from 'formik'
-import { PenIcon, UserPen } from 'lucide-react'
+import { UserPen } from 'lucide-react'
 
 
 function UpdateUser({data}) {
