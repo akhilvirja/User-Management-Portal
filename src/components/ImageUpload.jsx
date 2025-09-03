@@ -74,8 +74,6 @@ const ImageUpload = () =>{
                   scalable={true}
                   cropBoxResizable={true}
                   cropBoxMovable={true}
-                  
-
                 />
                 <div>
                   <h3>Preview</h3>

@@ -7,7 +7,8 @@ const initialState = {
             password: 'a',
         }
     ],
-    isLogin : false
+    isLogin : false,
+    currentUser : {}
 }
 const registeredUsersSlice = createSlice({
     name: "registeredUsers",
@@ -27,12 +28,14 @@ const registeredUsersSlice = createSlice({
             state.registerdUsers.map((user) =>{
                 if(user.username === action.payload.username && user.password === action.payload.password){
                    state.isLogin = true
+                   state.currentUser = user
                 }
             })            
 
         },
         setUserLoggedOut: (state) =>{
-            state = false
+            state.isLogin = false
+            state.currentUser = {}
         }
     }
 })

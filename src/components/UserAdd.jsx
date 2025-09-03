@@ -177,7 +177,7 @@ const UserAdd = () =>{
                     </form>
 
                     <ImageUpload />
-                </CardDescription>
+                    </CardDescription>
                 <CardFooter>
                     <Button type="submit" className="w-full mt-5" onClick={handleSubmit}>Add User</Button>
                 </CardFooter>
