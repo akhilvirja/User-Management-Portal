@@ -18,7 +18,7 @@ const registeredUsersSlice = createSlice({
         addUsers: (state, action) =>{
             let username = action.payload.username
             let password = action.payload.password
-
+            console.log(action)
             state.registerdUsers.map((user) => {
                 if(user.username === username && user.password === password){
                     state.error = "User already exist"
@@ -31,7 +31,6 @@ const registeredUsersSlice = createSlice({
                 username: username,
                 password: password,
             }
-            state.error = null
             state.registerdUsers.push(newUsers)
         },
         checkUserCredentials: (state, action) =>{
