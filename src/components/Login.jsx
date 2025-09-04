@@ -1,11 +1,13 @@
 import { checkUserCredentials } from "@/features/users/registeredUsers";
 import { useFormik } from "formik";
-import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
+    const error = useSelector(state => state.registeredUserReducer.error)
 
     const initialValues = {
         username : "",
@@ -18,11 +20,12 @@ const Login = () => {
             console.log(values)
             dispatch(checkUserCredentials(values))
             navigate("/users")
+            toast.success(`Welcome ${values.username}`)
         }
     })
 
   return (
-    <div className="flex items-center justify-center min-h-screen bg-white">
+    <div className="flex items-center justify-center min-h-screen bg-background">
       {/* Gradient thin border wrapper */}
       <div className="relative rounded-[22px] p-[2px] bg-gradient-to-tr from-[#00ff75] to-[#3700ff] transition-all duration-300 hover:shadow-[0_0_25px_3px_rgba(0,255,117,0.35)] max-w-sm w-full">
         {/* Inner dark card */}
@@ -77,6 +80,10 @@ const Login = () => {
                 className="bg-transparent border-none outline-none text-gray-300 w-full placeholder-gray-400"
               />
             </div>
+
+              {
+                error && <div className="mx-auto text-xs text-red-500">{error}</div>
+              }
 
             {/* Buttons */}
             <div className="flex justify-center gap-3 mt-6">

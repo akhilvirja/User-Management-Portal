@@ -8,6 +8,7 @@ import { useFormik } from "formik"
 import { addUser } from '../features/users/userSlice'
 import { useNavigate } from 'react-router-dom'
 import ImageUpload from './ImageUpload'
+import toast from 'react-hot-toast'
 
 const initialValues = {
     name: "",
@@ -30,13 +31,17 @@ const UserAdd = () =>{
             action.resetForm()
             dispatch(addUser(values))
             navigate("/users")
+            toast.success("User Created Successfully")
         }
     })
 
     return(
         <>
-        <div className="flex justify-center items-center h-full">
+        <div className="flex justify-center items-center h-dvh">
             <Card className="w-1/2 p-10">
+                <div className='flex justify-end'>
+                    <button className='p-2 bg-blue-500 rounded-xl text-white' onClick={() => {navigate("/users")}}>Home</button>
+                </div>
                 <CardHeader>
                     <CardTitle className="">Add User</CardTitle>
                     <CardDescription>Fill in the information to add a new user.</CardDescription>

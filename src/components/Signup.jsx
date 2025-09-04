@@ -1,11 +1,12 @@
 import { addUsers } from '@/features/users/registeredUsers';
 import { useFormik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const error = useSelector(state => state.registeredUserReducer.error)
 
   const initialValues = {
     username : "",
@@ -16,7 +17,9 @@ const Signup = () => {
     initialValues,
     onSubmit: (values) =>{
       dispatch(addUsers(values))
-      navigate("/login")
+      if(!error){
+        navigate("/login")
+      }
     }
   })
 
@@ -61,6 +64,10 @@ const Signup = () => {
             Password
           </span>
         </label>
+
+        {
+          error && <div className='mx-auto text-xs text-red-500'>{error}</div>
+        }
 
         <button
           type="submit"

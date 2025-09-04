@@ -2,12 +2,14 @@ import { useDispatch } from "react-redux"
 import { AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogTitle, AlertDialogTrigger,AlertDialog, AlertDialogFooter, AlertDialogHeader } from "./ui/alert-dialog"
 import { deleteUser } from "@/features/users/userSlice"
 import { Trash } from "lucide-react"
+import toast from "react-hot-toast"
 
-const DeleteUser = ({ id }) =>{
+const DeleteUser = ({ id, username }) =>{
     const dispatch = useDispatch()
 
     const handleDelete = () =>{
         dispatch(deleteUser({id}))
+        toast.success(`${username} deleted successfully`)
     }
 
     return(

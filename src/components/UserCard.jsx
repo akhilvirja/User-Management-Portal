@@ -10,7 +10,7 @@ function UserCard({userData}) {
                 <CardTitle className="text-2xl">{userData.name}</CardTitle>
                 <CardDescription>{userData.email}</CardDescription>
                 <UpdateUser data={userData} />
-                <DeleteUser id={userData.id} />
+                <DeleteUser id={userData.id} username={userData.name} />
             </CardHeader>
             <CardContent className="relative bottom-20">
                  <div className="flex flex-col gap-6">

@@ -3,12 +3,14 @@ import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { CKEditor } from '@ckeditor/ckeditor5-react'
 import { useFormik } from 'formik'
 import { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 
 function EventForm() {
     const [imagesWithCaption, setImagesWithCaption] = useState([])
     const [imageError, setImageError] = useState(false)
     const fileInputref = useRef()
+    const navigate = useNavigate()
 
     const handlePhotoChange = (e) =>{
         const selectedImages = Array.from(e.target.files)
@@ -77,6 +79,9 @@ function EventForm() {
         <div className='flex justify-center items-center h-dvh'>
             <div className='w-3xl border-2 px-4 pt-4 rounded-2xl shadow-xl'>
                 <form onReset={handleReset} onSubmit={handleSubmit} >
+                    <div className='flex justify-end'>
+                        <button className='p-2 bg-blue-500 rounded-xl text-white' onClick={() => {navigate("/users")}}>Home</button>
+                    </div>
                     <h2 className='text-2xl font-bold flex justify-center'>Event Form</h2>
                     <div className='flex flex-col gap-4 p-10'>
                         <div className='flex justify-between'>
