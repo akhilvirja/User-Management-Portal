@@ -16,6 +16,7 @@ const registeredUsersSlice = createSlice({
     initialState,
     reducers: {
         addUsers: (state, action) =>{
+            state.error =""
             let username = action.payload.username
             let password = action.payload.password
             console.log(action)
@@ -34,6 +35,7 @@ const registeredUsersSlice = createSlice({
             state.registerdUsers.push(newUsers)
         },
         checkUserCredentials: (state, action) =>{
+            state.error = ""
             console.log(action)
             state.registerdUsers.map((user) =>{
                 if(user.username === action.payload.username && user.password === action.payload.password){

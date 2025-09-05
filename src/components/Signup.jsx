@@ -1,12 +1,17 @@
 import { addUsers } from '@/features/users/registeredUsers';
 import { useFormik } from 'formik';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
-  const error = useSelector(state => state.registeredUserReducer.error)
+
+  const [error, setError] = useState()
+  let isError = false
+  // const error = useSelector(state => state.registeredUserReducer.error)
+  const registeredUsers = useSelector(state => state.registeredUserReducer.registerdUsers)
 
   const initialValues = {
     username : "",
@@ -16,8 +21,15 @@ const Signup = () => {
   const {values, handleChange, handleBlur, handleSubmit} = useFormik({
     initialValues,
     onSubmit: (values) =>{
-      dispatch(addUsers(values))
-      if(!error){
+
+      registeredUsers.map((user) => {
+        if(user.username === values.username && user.password === values.password){
+            setError("User Already Exist")
+            isError = true
+        }
+      })
+      if(!isError){
+        dispatch(addUsers(values))
         navigate("/login")
       }
     }
@@ -38,7 +50,7 @@ const Signup = () => {
               type="text"
               name='username'
               value={values.username}
-              onChange={handleChange}
+              onChange={(e) =>{handleChange({target: {name: "username", value: e.target.value.trim()}})}}
               onBlur={handleBlur}
               placeholder=""
               className="w-full p-[10px] pb-[20px] border border-gray-400/40 rounded-[10px] outline-none peer"

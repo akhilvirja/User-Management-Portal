@@ -1,5 +1,6 @@
 import { checkUserCredentials } from "@/features/users/registeredUsers";
 import { useFormik } from "formik";
+import { useState } from "react";
 import toast from "react-hot-toast";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -7,7 +8,9 @@ import { Link, useNavigate } from "react-router-dom";
 const Login = () => {
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const error = useSelector(state => state.registeredUserReducer.error)
+    // const error = useSelector(state => state.registeredUserReducer.error)
+    const [error, setError] = useState(null)
+    const registeredUsers = useSelector(state => state.registeredUserReducer.registerdUsers)
 
     const initialValues = {
         username : "",
@@ -18,9 +21,14 @@ const Login = () => {
         initialValues,
         onSubmit: (values) =>{
             console.log(values)
-            dispatch(checkUserCredentials(values))
-            navigate("/users")
-            toast.success(`Welcome ${values.username}`)
+            registeredUsers.map((user) =>{
+                if(user.username === values.username && user.password === values.password){
+                   dispatch(checkUserCredentials(values))
+                   navigate("/users")
+                   toast.success(`Welcome ${values.username}`)
+                }
+            })
+            setError("Enter valid username or password")
         }
     })
 
@@ -52,7 +60,7 @@ const Login = () => {
                 placeholder="Username"
                 value={values.username}
                 name="username"
-                onChange={handleChange}
+                onChange={(e) => handleChange({target: {name: "username", value: e.target.value.trim()}})}
                 onBlur={handleBlur}
                 className="bg-transparent border-none outline-none text-gray-300 w-full placeholder-gray-400"
               />
